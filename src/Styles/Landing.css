@@ -1,0 +1,71 @@
+.landingContainer {
+  background-image: url("../Media/bckgrndLanding.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: absolute;
+  display: flex;
+  color: #ff00006d;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+.linkReact{
+  text-decoration: none;
+}
+.textContainer{
+  top: 5rem;
+  position: absolute;
+}
+.btnLanding {
+  cursor: pointer;
+  margin: 1rem;
+  width: 3.3rem;
+  height: 1.3rem;
+  border-width: 0.000001rem;
+  color: rgb(118 118 118);
+  background-color: rgb(59, 59, 59);
+  border-radius: 0.2rem;
+  border-color: #780b0b;
+  border-style: solid;
+  transition: all 200ms ease;
+}
+.btnLanding:hover{
+  color:#db0004;
+  box-shadow: 0 0 30px #db0004;
+  transform: scale(1.01);
+}
+.GameflixConteiner {
+  color: #ff00006d;
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 12vh;
+  margin-bottom: -1vh;
+  width: fit-content;
+  transition: all 200ms
+}
+.GameflixConteiner:hover {
+  color:#db0004;
+  text-shadow: 0 0 30px #db0004;
+  transform: scale(1.01);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.2) 20%,
+    rgba(0, 0, 0, 0)
+  );
+}
+.byLanding{
+  position: absolute;
+  bottom: 1rem;
+  margin: 0;
+  right: 1rem;
+  transition: all 200ms ease;
+}
+.byLanding:hover{
+  color:#db0004;
+  text-shadow: 0 0 30px #db0004;
+  transform: scale(1.01);
+  cursor: pointer;
+}/* Made with Love :) */

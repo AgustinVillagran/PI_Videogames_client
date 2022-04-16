@@ -1,0 +1,201 @@
+.videogameCreatorContainer{
+  background-image: url("../Media/background_form.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: absolute;
+  display: grid;
+  color: #ff00006d;
+  width: 100%;
+  height: 100%;
+  justify-items: center;
+  align-items: baseline;
+}
+.btnBackFormCreator {
+  margin-top: 1rem;
+  cursor: pointer;
+  width: 3.3rem;
+  height: 1.3rem;
+  border-width: 0.000001rem;
+  color: rgb(118 118 118);
+  background-color: rgb(59, 59, 59);
+  border-radius: 0.2rem;
+  border-color: #780b0b;
+  border-style: solid;
+}
+.btnBackFormCreator:hover {
+  color: #db0004;
+  box-shadow: 0 0 30px #db0004;
+  transform: scale(1.01);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.2) 20%,
+    rgba(0, 0, 0, 0)
+  );
+}
+.formContainer{
+  background: linear-gradient(345deg, black, transparent);
+  box-shadow: black 2rem 2rem 30px;
+  height: 80.4vh;
+  width: 34rem;
+  display: inline-grid;
+  grid-gap: 0.7rem;
+  margin: 0.005rem;
+  padding: 0.04rem;
+  border-radius: 0.4rem;
+  border: solid 0.06rem rgba(255, 255, 255, 0);
+  justify-items: center;
+}
+.formContainer:hover{
+  border: solid 0.06rem #db0004;
+  box-shadow: 0 0 30px #db0004;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.2) 20%,
+    rgba(0,0,0,0)
+    );;
+}
+form{
+  display: inline-grid;
+  flex-direction: column;
+  align-content: space-evenly;
+  justify-content: start;
+}
+.titleForm {
+  color: #ff00006d;
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 6vh;
+  margin-bottom: -2vh;
+  margin-top: -1.5rem;
+  width: fit-content;
+  transition: all 200ms;
+}
+.titleForm:hover {
+  color: #db0004;
+  text-shadow: 0 0 30px #db0004;
+  transform: scale(1.01);
+}
+#listPlatformsForm{
+  font-size: 0.74rem;
+  width: 8.7rem;
+  height: 1.1rem;
+  border-width: 0px;
+  color: rgb(118 118 118);
+  background-color: rgb(59, 59, 59);
+  border-radius: 0.2rem;
+  border-width: 0.01rem;
+  border-color: #780b0b;
+  border-style: solid;
+  transition: all 600ms ease;
+}
+#listPlatformsForm:hover{
+  border: solid 0.06rem #db0004;
+  box-shadow: rgb(0 0 0 / 75%) 0px 3px 10px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.2) 20%,
+    rgba(0,0,0,0)
+    );
+}
+#listGenresForm{
+  font-size: 0.74rem;
+  width: 8.7rem;
+  height: 1.1rem;
+  border-width: 0px;
+  color: rgb(118 118 118);
+  background-color: rgb(59, 59, 59);
+  border-radius: 0.2rem;
+  border-width: 0.01rem;
+  border-color: #780b0b;
+  border-style: solid;
+  transition: all 600ms ease;
+}
+#listGenresForm:hover{
+  border: solid 0.06rem #db0004;
+  box-shadow: rgb(0 0 0 / 75%) 0px 3px 10px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.2) 20%,
+    rgba(0,0,0,0)
+    );
+}
+input{
+  font-size: 0.84rem;
+  width: 8rem;
+  height: 1.2rem;
+  border-width: 0px;
+  color: rgb(118 118 118);
+  background-color: rgb(59, 59, 59);
+  border-radius: 0.2rem;
+  border-width: 0.01rem;
+  border-color: #780b0b;
+  border-style: solid;
+  transition: all 600ms ease;
+}
+input:hover{
+  border: solid 0.06rem #db0004;
+  box-shadow: 0 0 30px #db0004;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.2) 20%,
+    rgba(0,0,0,0)
+    );;
+} 
+.descriptionForm{
+  width: 18rem;
+  height: 4rem
+}
+.btnForm{
+  margin-top: 1rem;
+  cursor: pointer;
+  width: 3.3rem;
+  height: 1.3rem;
+  border-width: 0.000001rem;
+  color: rgb(118 118 118);
+  background-color: rgb(59, 59, 59);
+  border-radius: 0.2rem;
+  border-color: #780b0b;
+  border-style: solid;
+  justify-self: center;
+}
+.btnForm:hover{
+  color: #db0004;
+  box-shadow: 0 0 30px #db0004;
+  transform: scale(1.01);
+  background: linear-gradient( to top, 
+  rgba(0, 0, 0, 0.5), 
+  rgba(0, 0, 0, 0.2) 20%, 
+  rgba(0, 0, 0, 0) );
+}
+.errorForm{
+  color: #db0004;
+  font-size: 0.74rem;
+  box-shadow: 0 0 30px #db0004;
+} 
+.btnFormDisabled{
+  margin-top: 1rem;
+  cursor:not-allowed;
+  width: 3.3rem;
+  height: 1.3rem;
+  border-width: 0.000001rem;
+  color: rgb(19, 19, 19);
+  background-color: rgb(20, 17, 17);
+  border-radius: 0.2rem;
+  border-color: #1e0101;
+  border-style: solid;
+  justify-self: center;
+}
+.btnFormDisabled:hover{
+  color: #1e0101;
+  box-shadow: 0 0 30px #1e0101;
+  transform: scale(1.01);
+  background: linear-gradient( to top, 
+  rgba(0, 0, 0, 0.5), 
+  rgba(0, 0, 0, 0.2) 20%, 
+  rgba(0, 0, 0, 0) );
+}  /* Made with Love :) */

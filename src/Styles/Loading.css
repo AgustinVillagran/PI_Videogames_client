@@ -1,0 +1,30 @@
+.loadingVideogameDetailContainer{
+  position: absolute;
+  left: 1px;
+  right: 1px;
+  top: 1px;
+  bottom: 1px;
+  margin: auto;
+  text-align: center;
+  background-image: url(https://assets.nflxext.com/en_us/pages/wiplayer/site-spinner.png);
+  width: 7vh;
+  height: 7vh;
+  background-size: 100%;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100%;
+  background-repeat: no-repeat;
+  -webkit-animation: loadingVideogameDetailContainer .9s linear infinite;
+  -moz-animation: loadingVideogameDetailContainer .9s linear infinite;
+  -o-animation: loadingVideogameDetailContainer .9s linear infinite;
+  animation: loadingVideogameDetailContainer .9s linear infinite;
+  min-width: 5rem;
+  min-height: 5rem;
+}
+@keyframes loadingVideogameDetailContainer{
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}/* Made with Love :) */

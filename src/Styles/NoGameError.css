@@ -1,0 +1,18 @@
+.NotFoundSearchVideogame{
+  font-weight: bold;
+  color: darkred;
+  font-size: 133%;
+  width: fit-content;
+  display: contents;
+}
+.NotFoundSearchVideogame:hover {
+  color: #db0004;
+  text-shadow: 0 0 30px #db0004;
+  transform: scale(1.01);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.2) 20%,
+    rgba(0, 0, 0, 0)
+  );
+} /* Made with Love :) */

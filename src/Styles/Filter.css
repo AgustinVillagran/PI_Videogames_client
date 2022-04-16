@@ -1,0 +1,72 @@
+.FilterContainer{
+  display: inline-flex;
+}
+.selectFilterContainer{
+  margin: 1.5vw;
+}
+.filterSourceContainer{
+  font-size: 0.74rem;
+  width: 6.8rem;
+  height: 1.1rem;
+  border-width: 0px;
+  color: rgb(118 118 118);
+  background-color: rgb(59, 59, 59);
+  border-radius: 0.2rem;
+  border-width: 0.01rem;
+  border-color: #780b0b;
+  border-style: solid;
+  transition: all 600ms ease;
+}
+.filterSourceContainer:hover{
+  border: solid 0.06rem #db0004;
+  box-shadow: rgb(0 0 0 / 75%) 0px 3px 10px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.2) 20%,
+    rgba(0,0,0,0)
+    );
+}
+.filterSourceContainer:focus{
+  border: solid 0.06rem #db0004;
+  box-shadow: rgb(0 0 0 / 75%) 0px 3px 10px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.2) 20%,
+    rgba(0,0,0,0)
+    );
+}
+.filterGenreContainer{
+  font-size: 0.74rem;
+  width: 8.7rem;
+  height: 1.1rem;
+  border-width: 0px;
+  color: rgb(118 118 118);
+  background-color: rgb(59, 59, 59);
+  border-radius: 0.2rem;
+  border-width: 0.01rem;
+  border-color: #780b0b;
+  border-style: solid;
+  transition: all 600ms ease;
+}
+.filterGenreContainer:hover{
+  border: solid 0.06rem #db0004;
+  box-shadow: rgb(0 0 0 / 75%) 0px 3px 10px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.2) 20%,
+    rgba(0,0,0,0)
+    );
+}
+.filterGenreContainer:focus{
+  border: solid 0.06rem #db0004;
+  box-shadow: rgb(0 0 0 / 75%) 0px 3px 10px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.2) 20%,
+    rgba(0,0,0,0)
+    );
+}/* Made with Love :) */
