@@ -10,7 +10,7 @@ import axios from "axios";
 //deploy
 import dotenv from "dotenv";
 dotenv.config();
-axios.defaults.baseURL = /* process.env.REACT_APP_API */"https://videogames-pi-back-mav.herokuapp.com" || "http://localhost:3333";
+axios.defaults.baseURL = "https://videogames-pi-back-mav.herokuapp.com"; /* process.env.REACT_APP_API || "http://localhost:3333"*/
 
 render(
   <React.StrictMode>
