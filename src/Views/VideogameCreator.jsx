@@ -8,13 +8,13 @@ import createVideogame from "../Redux/Actions/Videogame";
 export default function VideogameCreator({history:{push}}) {
   const{videogames:{unmutedVgsApi},genres} = useSelector((state) => state);
   let allPlatforms = [];
-  unmutedVgsApi?.map(el => {allPlatforms = allPlatforms.concat(el.platforms)});
+  unmutedVgsApi?.map(el => {return allPlatforms = allPlatforms.concat(el.platforms)});
   let listPlatforms = [...new Set(allPlatforms)]
   let [data,setData] = useState({
     name:"",
     description:"",
     released: "",
-    rating:1,
+    rating:"",
     platforms: [],
     genres: [],
     background_image:"",
@@ -26,9 +26,21 @@ export default function VideogameCreator({history:{push}}) {
     rating:"",
     platforms: "",
     genres: "",
-    disabled: true,
+  });
+  let [disabled,setDisabled] = useState({
+    name: true,
+    description: true,
+    released: true,
+    rating: true,
+    platforms: true,
+    genres: true,
+  });
+  const disabledOrNot =  Object.values(disabled).reduce((acc,el) => {
+    return acc || el
   });
   const dispatch = useDispatch();
+  let [openDialog, setOpenDialog] = useState(false);
+
   useEffect(() =>{
     dispatch(getGenres())
     dispatch(getVideogamesApi())
@@ -43,53 +55,104 @@ export default function VideogameCreator({history:{push}}) {
     const value = e.target.value;
     const name = e.target.name;
 
+    const setErr = (err) => {setError(error={
+      ...error,[name]:err,disabled:true});
+      setDisabled(disabled={...disabled,[name]:true});
+      (name==="platforms" || name==="genres") && setOpenDialog(openDialog=true);
+    }
+
+    const noErr =  (name) => {setError(error={
+      ...error,[name]:""});
+      setDisabled(disabled={...disabled,[name]:false});
+      (name==="platforms" || name==="genres") && setOpenDialog(openDialog=false)
+    };
+
     switch (name) {
       case "name":
         value.length<4
-          ? setError(error={...error,[name]:"The name must be at least 4 characters",disabled:true})
+          ? setErr("The name must be at least 4 characters")
           : value.length>50
-            ? setError(error={...error,[name]:"The name must not exceed 50 characters",disabled:true})
-            : setError(error={...error,[name]:"",disabled:false})
+            ? setErr("The name must not exceed 50 characters")
+            : noErr(name)
         break;
       case "description":
         value.length<50
-          ? setError(error={...error,[name]:"The name must be at least 50 characters",disabled:true})
+          ? setErr("The name must be at least 50 characters")
           : value.length>500
-            ? setError(error={...error,[name]:"The name must not exceed 500 characters",disabled:true})
-            : setError(error={...error,[name]:"",disabled:false})
+            ? setErr("The name must not exceed 500 characters")
+            : noErr(name)
+        break;
+      case "background_image":
+        !value
+          ? setErr("The image must be complete.")
+          : value.slice(0,5) !== "https"
+            ? setErr("The link must have https protocol.")
+            : value.slice(0,5) === "https" && (value.slice(-3) !== "jpg" && value.slice(-3) !== "png" && value.slice(-3) !== "gif" )
+              ? setErr("The image must be jpg, png or gif.")
+              : noErr(name)
         break;
       case "released":
-        // !/^\d{4}-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])$/.test(data.released)
-        // && setError(error={...error,[name]:"The released must be a date with the format dd/mm/yyyy",disabled:true})
+        const today = new Date();
+        const dayToday = today.getDate();
+        const monthToday = today.getMonth()+1;
+        const yearToday = today.getFullYear();
+
+        let [yearValue, monthValue, dayValue] = value.split("-");
+        yearValue = Number(yearValue);
+        monthValue = Number(monthValue);
+        dayValue = Number(dayValue);
+
+        yearValue > yearToday
+          ? setErr("Date must be earlier than the current date.")
+          : yearValue >= yearToday && monthValue > monthToday
+            ? setErr("Date must be earlier than the current date.")
+              : yearValue >= yearToday && monthValue >= monthToday && dayValue > dayToday
+                ? setErr("Date must be earlier than the current date.")
+                : noErr(name)
         break;
       case "rating":
-        (![name] || [name]<0 || [name]>5) 
-        && setError(error={...error,[name]:"The rating must be a number between 0 and 5",disabled:true})
+        const numValue = Number(value);
+
+        numValue < 0.1 || numValue > 5
+          ? setErr("The rating must be a number between 0.1 and 5")
+          : noErr(name)
         break;
-      case "platforms":
-        ![name] && setError(error={...error,[name]:"Select one platform at least",disabled:true})
-        break;
-      case "genres":
-        ![name] && setError(error={...error,[name]:"Select one genre at least",disabled:true})
-        break;
+      /* case "platforms":
+        !value
+          ? setErr("Select one platform at least")
+          : noErr(name)
+        break; */
+      /* case "genres":
+        
+        break; */
       default:
+        data[name].includes(value)
+          ? setErr(`The ${name} must not be repetead.`)
+          : noErr(name)
         break;
     }
     name === "platforms" || name === "genres" 
-    ? !(data[name].includes(value))
+    ? !data[name].includes(value) 
       && setData(data={
-      ...data,
-      [name]: [...data[name], value]
+        ...data,
+        [name]: [...data[name], value]
       })
     :setData(data={
       ...data,
       [name]:value
-    })
-  }/* setError(error={...error, [name]: `The ${name} must not repeat`} */
+    });
+  };
+
+  const handleOnChangeCheckbox = (e) =>{
+    const value = e.target.value;
+    const name = e.target.name;
+
+    setData(data={...data,[name]: data[name].filter(el=> el!==value)})
+  };
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
-    console.log("data: ", data)
+    data.rating = Number(data.rating);
     const newVideogame = await dispatch(createVideogame(data));
     setData(data={
       name:"",
@@ -104,6 +167,14 @@ export default function VideogameCreator({history:{push}}) {
     push(`/videogame/${newVideogame.id}`)
   }
 
+  const onClickDialogPlatforms = (e) =>{
+    const name= e.target.id;
+    console.log("name: ", name)
+    console.log("antes: ", error[name])
+    setError(error={...error,[name]:""})
+    console.log(error[name])
+    setOpenDialog(openDialog=false)
+  }
   return(
     <div className="videogameCreatorContainer">
       <div className="btnbackContainer">
@@ -147,44 +218,83 @@ export default function VideogameCreator({history:{push}}) {
             required
           />{error.released  &&<span className="errorForm">{error.released}</span>}
           <input 
-            type="number" //me jode con los decimales 
+            type="number"
+            step={0.1}
             min={0}
             max={5}
+            placeholder="Rating"
             name="rating" 
             value={data.rating} 
             onChange={handleOnChange} 
-            placeholder="Rating"
             required
           />{error.rating  &&<span className="errorForm">{error.rating}</span>}
-          <select
-            multiple
-            id="listPlatformsForm"
-            name="platforms" 
-            value={data.platforms} 
-            onChange={handleOnChange} 
-            required
-          >{error.platforms  &&<span className="errorForm">{error.platforms}</span>}
-            {listPlatforms?.map((el, i) =>{
-              return <option key={i}>{el}</option>
-            })}
-          </select>
-          <select 
-            multiple
-            id="listGenresForm"
-            name="genres" 
-            value={data.genres} 
-            onChange={handleOnChange} 
-            required
-          >{error.genres  &&<span>{error.genres}</span>}
-            {genres?.map((el, i) =>{
-              return <option key={i}>{el}</option>
-            })}
-          </select>
+          <div className="selectsConteiner">
+            <div className="selects" >
+              <select
+                id="listPlatformsForm"
+                name="platforms" 
+                value={data.platforms} 
+                onChange={handleOnChange} 
+                required
+              >{listPlatforms?.map((el, i) =>{
+                  return <option key={i}>{el}</option>
+                })}
+              </select>
+              {error.platforms  &&<span className="errorForm">{error.platforms}</span>}
+              {data.platforms.map((el, i) =>{
+                  return <label className="FormSelects">
+                    <input 
+                    key={i}
+                      type="checkbox" 
+                      checked 
+                      name="platforms" 
+                      value={data.platforms[i]}
+                      onChange={handleOnChangeCheckbox} 
+                    />{el}
+                  </label>
+              })}
+            </div>
+            <dialog 
+              open={openDialog}
+              className={openDialog && "dialogPlatforms"}
+            >
+              <span>{error.platforms}</span>
+              <span 
+                className="xBtnDialog"
+                id="platforms"
+                onClick={onClickDialogPlatforms}
+              >X</span>
+            </dialog>
+            <div className="selects">
+              <select
+                id="listGenresForm"
+                name="genres" 
+                value={data.genres} 
+                onChange={handleOnChange} 
+                required
+              >{genres?.map((el, i) =>{
+                  return <option key={i}>{el}</option>
+                })}
+              </select>
+              {data.genres.map((el, i) =>{
+                  return <label className="FormSelects">
+                    <input 
+                    key={i}
+                      type="checkbox" 
+                      checked 
+                      value={data.genres[i]}
+                      onChange={handleOnChangeCheckbox} 
+                    />{el}
+                  </label>
+              })}
+              {error.genres  &&<span className="errorForm">{error.genres}</span>}
+            </div>
+          </div>
           <input 
-            className={error.disabled?"btnFormDisabled":"btnForm"} 
+            className={disabledOrNot? "btnFormDisabled" : "btnForm"} 
             type="submit" 
             value="submit"
-            disabled={error.disabled}
+            disabled={disabledOrNot}
           />
         </form>
       </div>

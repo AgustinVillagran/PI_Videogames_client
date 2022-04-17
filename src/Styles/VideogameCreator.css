@@ -100,6 +100,28 @@ form{
     rgba(0,0,0,0)
     );
 }
+.dialogPlatforms{
+  top: 14rem;
+  background: linear-gradient(0deg, black, transparent);
+  height: 4rem;
+  width: 17rem;
+  border: solid 0.06rem #db0004;
+  box-shadow: 0 0 30px #db0004;
+  display: inline-grid;
+  color: #ff00006d;
+  border-radius: 0.4rem;
+  font-size: 1.2rem;
+  align-items: center;
+}
+.xBtnDialog{
+  width: 1.2rem;
+  height: 1.2rem;
+  font-size: 1rem;
+  top: 0.1rem;
+  right: 0.3rem;
+  cursor: pointer;
+  position: absolute;
+}
 #listGenresForm{
   font-size: 0.74rem;
   width: 8.7rem;
@@ -150,6 +172,27 @@ input:hover{
   width: 18rem;
   height: 4rem
 }
+.selectsConteiner{
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+input[type="checkbox"] {
+  width: 0rem;
+  height: 0.85rem;
+  margin-right: 0.4rem;
+  transition: width 300ms ease;
+}
+input[type="checkbox"]:hover {
+  width: 0.85rem;
+  height: 0.85rem;
+  margin-right: 0.4rem;
+}
+.selects{
+  display: inline-grid;
+  align-items: start;
+    justify-items: start;
+}
 .btnForm{
   margin-top: 1rem;
   cursor: pointer;
@@ -173,6 +216,11 @@ input:hover{
   rgba(0, 0, 0, 0) );
 }
 .errorForm{
+  color: #db0004;
+  font-size: 0.74rem;
+  box-shadow: 0 0 30px #db0004;
+} 
+.FormSelects{
   color: #db0004;
   font-size: 0.74rem;
   box-shadow: 0 0 30px #db0004;
