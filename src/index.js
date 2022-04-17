@@ -10,7 +10,7 @@ import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
 
-axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3333" ;
+axios.defaults.baseURL = process.env.REACT_APP_API? process.env.REACT_APP_API : process.env.DB_URL ;
 
 render(
   <React.StrictMode>
