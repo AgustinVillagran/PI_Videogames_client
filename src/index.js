@@ -9,9 +9,11 @@ import { BrowserRouter } from "react-router-dom/cjs/react-router-dom.min";
 import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
+const {DB_URL} = process.env;
 
-axios.defaults.baseURL = process.env.REACT_APP_API? process.env.REACT_APP_API : process.env.DB_URL ;
-
+axios.defaults.baseURL = process.env.NODE_ENV === "production" ? process.env.REACT_APP_API : process.env.DB_URL ;
+console.log("axios.defaults.baseURL: ", axios.defaults.baseURL, "process.env.DB_URL : ", process.env.DB_URL, "process.env.REACT_APP_API: ", process.env.REACT_APP_API, "DB_URL: ", DB_URL,"axios.defaults: ", axios.defaults, "process.env: ", process.env)
+//hola
 render(
   <React.StrictMode>
     <BrowserRouter>
