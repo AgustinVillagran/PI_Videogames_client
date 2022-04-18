@@ -9,6 +9,7 @@
   height: 100%;
   justify-items: center;
   align-items: baseline;
+  z-index: 0;
 }
 .btnBackFormCreator {
   margin-top: 1rem;
@@ -45,6 +46,7 @@
   border-radius: 0.4rem;
   border: solid 0.06rem rgba(255, 255, 255, 0);
   justify-items: center;
+  z-index: 5;
 }
 .formContainer:hover{
   border: solid 0.06rem #db0004;
@@ -61,6 +63,7 @@ form{
   flex-direction: column;
   align-content: space-evenly;
   justify-content: start;
+  z-index: 10;
 }
 .titleForm {
   color: #ff00006d;
@@ -71,6 +74,10 @@ form{
   margin-top: -1.5rem;
   width: fit-content;
   transition: all 200ms;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; 
 }
 .titleForm:hover {
   color: #db0004;
@@ -102,16 +109,61 @@ form{
 }
 .dialogPlatforms{
   top: 14rem;
-  background: linear-gradient(0deg, black, transparent);
+  background-color: black;
   height: 4rem;
   width: 17rem;
-  border: solid 0.06rem #db0004;
-  box-shadow: 0 0 30px #db0004;
+  border: solid 0.06rem rgba(255, 255, 255, 0);
+  box-shadow: black 2rem 2rem 30px;
   display: inline-grid;
   color: #ff00006d;
   border-radius: 0.4rem;
   font-size: 1.2rem;
   align-items: center;
+  z-index: 15;
+}
+.dialogPlatforms:hover{
+  border: solid 0.06rem #db0004;
+  box-shadow: 0 0 30px #db0004;
+}
+.dialogPlatforms::before {
+  content: "";
+  width: 99vw;
+  height: 99vh;
+  position: absolute;
+  margin: auto;
+  top: -40vh;
+  left: -37vw;
+  background-color: #00000087;
+  z-index: -1;
+}
+.dialogGenres{
+  top: 14rem;
+  background-color: black;
+  height: 4rem;
+  width: 17rem;
+  border: solid 0.06rem rgba(255, 255, 255, 0);
+  box-shadow: black 2rem 2rem 30px;
+  display: inline-grid;
+  color: #ff00006d;
+  border-radius: 0.4rem;
+  font-size: 1.2rem;
+  align-items: center;
+  z-index: 15;
+}
+.dialogGenres:hover{
+  border: solid 0.06rem #db0004;
+  box-shadow: 0 0 30px #db0004;
+}
+.dialogGenres::before {
+  content: "";
+  width: 99vw;
+  height: 99vh;
+  position: absolute;
+  margin: auto;
+  top: -40vh;
+  left: -37vw;
+  background-color: #00000087;
+  z-index: -1;
 }
 .xBtnDialog{
   width: 1.2rem;
@@ -121,6 +173,7 @@ form{
   right: 0.3rem;
   cursor: pointer;
   position: absolute;
+  z-index: 15;
 }
 #listGenresForm{
   font-size: 0.74rem;
@@ -223,7 +276,6 @@ input[type="checkbox"]:hover {
 .FormSelects{
   color: #db0004;
   font-size: 0.74rem;
-  box-shadow: 0 0 30px #db0004;
 } 
 .btnFormDisabled{
   margin-top: 1rem;

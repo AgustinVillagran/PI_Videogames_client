@@ -1,3 +1,9 @@
+body{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; 
+}
 .landingContainer {
   background-image: url("../Media/bckgrndLanding.jpg");
   background-repeat: no-repeat;
@@ -43,7 +49,7 @@
   font-size: 12vh;
   margin-bottom: -1vh;
   width: fit-content;
-  transition: all 200ms
+  transition: all 200ms;
 }
 .GameflixConteiner:hover {
   color:#db0004;
@@ -61,7 +67,6 @@
   bottom: 1rem;
   margin: 0;
   right: 1rem;
-  transition: all 200ms ease;
 }
 .byLanding:hover{
   color:#db0004;

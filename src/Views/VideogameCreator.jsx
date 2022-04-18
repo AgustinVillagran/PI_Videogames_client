@@ -15,8 +15,8 @@ export default function VideogameCreator({history:{push}}) {
     description:"",
     released: "",
     rating:"",
-    platforms: [],
-    genres: [],
+    platforms: ["Platforms"],
+    genres: ["Genres"],
     background_image:"",
   });
   let [error,setError] = useState({
@@ -39,7 +39,10 @@ export default function VideogameCreator({history:{push}}) {
     return acc || el
   });
   const dispatch = useDispatch();
-  let [openDialog, setOpenDialog] = useState(false);
+  let [openDialog, setOpenDialog] = useState({
+    platforms: false,
+    genres: false
+  });
 
   useEffect(() =>{
     dispatch(getGenres())
@@ -56,15 +59,15 @@ export default function VideogameCreator({history:{push}}) {
     const name = e.target.name;
 
     const setErr = (err) => {setError(error={
-      ...error,[name]:err,disabled:true});
+      ...error,[name]:err});
       setDisabled(disabled={...disabled,[name]:true});
-      (name==="platforms" || name==="genres") && setOpenDialog(openDialog=true);
+      (name==="platforms" || name==="genres") && setOpenDialog(openDialog={...openDialog, [name]:true});
     }
 
     const noErr =  (name) => {setError(error={
       ...error,[name]:""});
       setDisabled(disabled={...disabled,[name]:false});
-      (name==="platforms" || name==="genres") && setOpenDialog(openDialog=false)
+      (name==="platforms" || name==="genres") && setOpenDialog(openDialog={...openDialog, [name]:false})
     };
 
     switch (name) {
@@ -117,14 +120,6 @@ export default function VideogameCreator({history:{push}}) {
           ? setErr("The rating must be a number between 0.1 and 5")
           : noErr(name)
         break;
-      /* case "platforms":
-        !value
-          ? setErr("Select one platform at least")
-          : noErr(name)
-        break; */
-      /* case "genres":
-        
-        break; */
       default:
         data[name].includes(value)
           ? setErr(`The ${name} must not be repetead.`)
@@ -133,26 +128,28 @@ export default function VideogameCreator({history:{push}}) {
     }
     name === "platforms" || name === "genres" 
     ? !data[name].includes(value) 
-      && setData(data={
-        ...data,
-        [name]: [...data[name], value]
-      })
-    :setData(data={
-      ...data,
-      [name]:value
-    });
+      && setData(data={...data,[name]: [...data[name], value]})
+    :setData(data={...data,[name]:value});
   };
 
   const handleOnChangeCheckbox = (e) =>{
     const value = e.target.value;
     const name = e.target.name;
 
-    setData(data={...data,[name]: data[name].filter(el=> el!==value)})
+    setData(data={...data,[name]: data[name]?.filter(el=> el!==value)})
+    if (!data[name]?.filter(el=>el!== (name==="platforms"?"Platforms" : "Genres")).length){
+      setDisabled(disabled={...disabled,[name]:true});
+      setData(data={...data,[name]:name==="platforms"? ["Platforms"] : ["Genres"]})
+    }
   };
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
+
     data.rating = Number(data.rating);
+    data.platforms = data.platforms?.filter(el => el!== "Platforms");
+    data.genres = data.platforms?.filter(el => el!== "Genres");
+
     const newVideogame = await dispatch(createVideogame(data));
     setData(data={
       name:"",
@@ -169,11 +166,10 @@ export default function VideogameCreator({history:{push}}) {
 
   const onClickDialogPlatforms = (e) =>{
     const name= e.target.id;
-    console.log("name: ", name)
-    console.log("antes: ", error[name])
+    
     setError(error={...error,[name]:""})
-    console.log(error[name])
-    setOpenDialog(openDialog=false)
+    setOpenDialog(openDialog={...openDialog,[name]:false})
+    setDisabled(disabled={...disabled,[name]:false})
   }
   return(
     <div className="videogameCreatorContainer">
@@ -233,18 +229,22 @@ export default function VideogameCreator({history:{push}}) {
               <select
                 id="listPlatformsForm"
                 name="platforms" 
-                value={data.platforms} 
+                value={data.platforms}
                 onChange={handleOnChange} 
                 required
-              >{listPlatforms?.map((el, i) =>{
+              >
+                <option>Platforms</option>
+                {listPlatforms?.map((el, i) =>{
                   return <option key={i}>{el}</option>
                 })}
               </select>
-              {error.platforms  &&<span className="errorForm">{error.platforms}</span>}
-              {data.platforms.map((el, i) =>{
-                  return <label className="FormSelects">
-                    <input 
+              {data.platforms?.map((el, i) =>{
+                return el !== "Platforms"
+                    && <label 
                     key={i}
+                    className="FormSelects"
+                  >
+                    <input
                       type="checkbox" 
                       checked 
                       name="platforms" 
@@ -255,8 +255,8 @@ export default function VideogameCreator({history:{push}}) {
               })}
             </div>
             <dialog 
-              open={openDialog}
-              className={openDialog && "dialogPlatforms"}
+              open={openDialog.platforms}
+              className={openDialog.platforms?"dialogPlatforms" : undefined}
             >
               <span>{error.platforms}</span>
               <span 
@@ -272,23 +272,39 @@ export default function VideogameCreator({history:{push}}) {
                 value={data.genres} 
                 onChange={handleOnChange} 
                 required
-              >{genres?.map((el, i) =>{
+              >
+                <option>Genres</option>
+                {genres?.map((el, i) =>{
                   return <option key={i}>{el}</option>
                 })}
               </select>
-              {data.genres.map((el, i) =>{
-                  return <label className="FormSelects">
-                    <input 
+              {data.genres?.map((el, i) =>{
+                return el !== "Genres"
+                  && <label 
                     key={i}
+                    className="FormSelects"
+                  >
+                    <input
                       type="checkbox" 
                       checked 
+                      name="genres"
                       value={data.genres[i]}
                       onChange={handleOnChangeCheckbox} 
                     />{el}
                   </label>
               })}
-              {error.genres  &&<span className="errorForm">{error.genres}</span>}
             </div>
+            <dialog 
+              open={openDialog.genres}
+              className={openDialog.genres?"dialogGenres" : undefined}
+            >
+              <span>{error.genres}</span>
+              <span 
+                className="xBtnDialog"
+                id="genres"
+                onClick={onClickDialogPlatforms}
+              >X</span>
+            </dialog>
           </div>
           <input 
             className={disabledOrNot? "btnFormDisabled" : "btnForm"} 
