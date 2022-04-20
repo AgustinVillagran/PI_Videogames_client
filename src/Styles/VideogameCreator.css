@@ -298,4 +298,49 @@ input[type="checkbox"]:hover {
   rgba(0, 0, 0, 0.5), 
   rgba(0, 0, 0, 0.2) 20%, 
   rgba(0, 0, 0, 0) );
+}
+@media only screen and (max-width:600px){
+  .videogameCreatorContainer{
+    BACKGROUND-POSITION-X: -15rem;
+    background-size: cover;
+  }
+  .btnBackFormCreator {
+    display:none
+  }
+  .formContainer {
+    width: 95vw;
+    border: solid 0.06rem #db0004;
+    box-shadow: 0 0 30px #db0004;
+    background: linear-gradient( to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2) 20%, rgba(0,0,0,0) );
+  }
+  form{
+    padding: 1rem;
+  }
+  .titleForm {
+    color: #db0004;
+    text-shadow: 0 0 30px #db0004;
+    transform: scale(1.01);
+  }
+  .dialogPlatforms{
+    border: solid 0.06rem #db0004;
+    box-shadow: 0 0 30px #db0004;
+  }
+  .dialogPlatforms::before{
+    top: -14rem;
+    height: 100vh;
+    width: 100vw;
+    left: -3.22rem;
+  }
+  .dialogGenres{
+    border: solid 0.06rem #db0004;
+    box-shadow: 0 0 30px #db0004;
+  }
+  .dialogGenres::before {
+    border: solid 0.06rem #db0004;
+    box-shadow: 0 0 30px #db0004;
+    top: -14rem;
+    height: 100vh;
+    width: 100vw;
+    left: -3.22rem;
+  }
 }  /* Made with Love :) */

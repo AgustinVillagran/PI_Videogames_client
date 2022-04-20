@@ -66,7 +66,7 @@
 .containerDescripcionVideogameDetail{
   height: 13vh;
   text-align: center;
-  overflow: hidden;
+  text-overflow: ;
 }
 .containerDescripcionVideogameDetail:hover{
   overflow-y: scroll;
