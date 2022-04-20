@@ -73,4 +73,20 @@ body{
   text-shadow: 0 0 30px #db0004;
   transform: scale(1.01);
   cursor: pointer;
+}
+@media only screen and (max-width:600px){
+  .landingContainer {
+    background-position-x: center;
+    background-size: 100vh;
+    overflow: hidden;
+    background-position-x: -1rem;
+    background-position-y: 0rem;
+  }
+  .GameflixConteiner {
+    font-size: 5rem;
+  }
+  .textContainer {
+    top: 8rem;
+    position: absolute;
+  }
 }/* Made with Love :) */

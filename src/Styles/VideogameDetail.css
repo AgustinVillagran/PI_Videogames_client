@@ -1,3 +1,12 @@
+.backgroundContainerVideogameDetail{
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+.btnBackContainter{
+  position: absolute;
+  left: 48vw;
+}
 .btnBack {
   margin-top: 1rem;
   cursor: pointer;
@@ -14,36 +23,76 @@
   color: #db0004;
   box-shadow: 0 0 30px #db0004;
   transform: scale(1.01);
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.5),
-    rgba(0, 0, 0, 0.2) 20%,
-    rgba(0, 0, 0, 0)
-  );
-}
-
+  background: black
+  }
 .ContainerVideogameDetail {
-  display: inline-grid;
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
   justify-content: center;
   align-items: center;
   justify-items: center;
   align-content: space-evenly;
+  flex-direction: row;
+  background: radial-gradient(transparent, black);
 }
-.imgContainerVideogameDetail {
+.imgContainerVideogameDetail{
+  padding: 1rem;
 }
-
 .imgVideogameDetail {
-  width: 50%;
-  padding-top: 6%;
+  width: 50vw;
+  border-radius: 0.2rem;
 }
-
 .textContainerVideogameDetail {
-  padding: 3%;
+  padding: 1rem;
   color: rgba(255, 255, 255, 1);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.84rem;
 }
-
 .titlesVideogameDetail {
   font-weight: bold;
-  color: darkred;
+  color: #bd0000;
   font-size: 133%;
+  transition: all 150ms ease;
+  width: fit-content;
+}
+.titlesVideogameDetail:hover {
+  color: #db0004;
+  text-shadow: 0 0 30px #db0004;
+  transform: scale(1.01);
+  }
+.containerDescripcionVideogameDetail{
+  height: 13vh;
+  text-align: center;
+  overflow: hidden;
+}
+.containerDescripcionVideogameDetail:hover{
+  overflow-y: scroll;
+}
+.containerReleasedAndRating{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 7rem;
+}
+p:hover{
+background: radial-gradient(#0000004f, #00000054);
+box-shadow: 0 0 30px #000000a6;
+border-radius: 0.2rem;
+}
+@media only screen and (max-width:600px){
+  .backgroundContainerVideogameDetail{
+    background-position-x: center;
+  }
+  .ContainerVideogameDetail {
+    flex-direction: column;
+  }
+  .imgVideogameDetail {
+    width: 24rem;
+  }
+  .btnBack {
+    display: none;
+  }
 }/* Made with Love :) */

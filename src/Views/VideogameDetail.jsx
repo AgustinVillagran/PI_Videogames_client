@@ -19,19 +19,19 @@ export default function VideogameDetail(props) {
     }
     getData();
   }, [id]);
-  console.log("videogame.genres: ", videogame?.genres)
   function handleNavigate() {
     push("/videogames");
   }
 
   return videogame 
     ? (
-      <div className="ContainerVideogameDetail">
-        <div className="btnBackContainter">
-          <button className="btnBack" type="button" onClick={handleNavigate}>
-            Back
-          </button>
-        </div>
+      <div className="backgroundContainerVideogameDetail" style={{backgroundImage:`url(${videogame.background_image})`}}>
+      <div className="btnBackContainter">
+        <button className="btnBack" type="button" onClick={handleNavigate}>
+          Back
+        </button>
+      </div>
+      <div className="ContainerVideogameDetail"  >
         <div className="imgContainerVideogameDetail">
           <img
             src={videogame.background_image}
@@ -41,18 +41,27 @@ export default function VideogameDetail(props) {
         </div>
         <div className="textContainerVideogameDetail">
           <div className="titlesVideogameDetail">Name</div>
-          <p>{videogame.name}</p>
+            <p>{videogame.name}</p>
           <div className="titlesVideogameDetail">Description</div>
-          <p>{videogame.description}</p>
+            <p className="containerDescripcionVideogameDetail">
+              {videogame.description}
+            </p>
           <div className="titlesVideogameDetail">Platforms</div>
-          <p>{`${videogame.platforms?.join(", ")}.`}</p>
+            <p>{`${videogame.platforms?.join(", ")}.`}</p>
           <div className="titlesVideogameDetail">Genres</div>
-          <p>{`${videogame.genres?.join(", ")}.`}</p>
-          <div className="titlesVideogameDetail">Released</div>
-          <p>{videogame.released}</p>
-          <div className="titlesVideogameDetail">Rating</div>
-          <p>{videogame.rating}</p>
+            <p>{`${videogame.genres?.join(", ")}.`}</p>
+          <div className="containerReleasedAndRating">
+          <div className="cointainerAttributeVideogame">
+            <div className="titlesVideogameDetail">Released</div>
+            <p>{videogame.released}</p>
+          </div>
+          <div className="cointainerAttributeVideogame">
+            <div className="titlesVideogameDetail">Rating</div>
+            <p>{videogame.rating}</p>
+          </div>
+          </div>
         </div>
+      </div>
       </div>
   ) : <Loading/>;
 } //Made with Love :)

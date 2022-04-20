@@ -33,4 +33,15 @@
     rgba(0, 0, 0, 0.2) 20%,
     rgba(0,0,0,0)
     );
-}/* Made with Love :) */
+}
+@media only screen and (max-width:600px){
+  .orderByHeaderContainer {
+    position: absolute;
+    top: 2.8rem;
+    width: 4.3rem;
+    right: 41vw;
+    z-index: 0;
+  }
+
+}
+/* Made with Love :) */

@@ -16,4 +16,12 @@
   bottom: 0;
   width: 100%;
   opacity: 1;
-}/* Made with Love :) */
+}
+@media only screen and (max-width:600px){
+  .homeContent {
+    /* column-count: 2;
+    display: block;
+    column-gap: 0rem; */
+    margin-block: 2rem;
+  }
+} /* Made with Love :) */

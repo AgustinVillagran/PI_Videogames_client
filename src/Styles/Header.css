@@ -40,6 +40,7 @@ body{
   border-width: 0.01rem;
   border-color: #780b0b;
   border-style: solid;
+  transition: all 600ms ease;
 }
 .btnCreateGameHeader:hover{
   border: solid 0.06rem #db0004;
@@ -156,4 +157,74 @@ body{
 }
 .sliderByHeaderContainer::-webkit-slider-thumb:focus{
   border: solid 0.6rem #db0004;
+}
+@media only screen and (max-width:600px){
+  .Header{
+    height: fit-content;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    overflow-y: scroll;
+    height: 7rem;
+    margin-top: 0rem;
+  }
+  .Header::before {
+    content: "";
+    width: 100vw;
+    height: 2.8rem;
+    top: 0rem;
+    position: fixed;
+    background: linear-gradient(#000000db 70%, transparent );
+    z-index: 1;
+  }
+  .logoHeaderHomeContainer {
+    color: #db0004;
+    left: 0rem;
+    top: -1rem;
+    position: fixed;
+    width: 1.2rem;
+    overflow: hidden;
+    font-weight: 700;
+    z-index: 1;
+  }
+  .logoHeaderHomeContainer{
+    transform: scale(1);
+  }
+  .pageHeaderPageContainer {
+    padding-top: 0rem;
+    margin-left: 0rem;
+    margin-bottom: 0rem;
+    position: fixed;
+    top: 0.3rem;
+    z-index: 1;
+  }
+  .inputHeaderHomeContainer {
+    top: 0.3rem;
+    right: 0.1rem;
+    position: fixed;
+    z-index: 1;
+  }
+  .inputHeaderHome {
+    width: 3.8rem;
+  }
+  .btnCreateGameHeaderContainer {
+    position: fixed;
+    z-index: 0;
+    bottom: 0.4rem;
+  }
+  .btnCreateGameHeaderContainer::before {
+    content: "";
+    width: 100vw;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(transparent, #000000db 20%);
+    position: fixed;
+    height: 3rem;
+    z-index: -1;
+  }
+  .btnCreateGameHeader{
+    border-color: #db0004;
+  }
+  
 }/* Made with Love :) */
