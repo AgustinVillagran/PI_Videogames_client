@@ -187,7 +187,7 @@ export default function VideogameCreator({history:{push}}) {
             placeholder="Name"
             required
           />{error.name  &&<span className="errorForm">{error.name}</span>}
-          <input 
+          {/*  <input 
             type="text" 
             name="description" 
             className="descriptionForm"
@@ -195,7 +195,17 @@ export default function VideogameCreator({history:{push}}) {
             onChange={handleOnChange}  
             placeholder="Description"
             required
-          />{error.description  &&<span className="errorForm">{error.description}</span>}
+          /> */}
+          <textarea 
+          className="descriptionForm"
+          name="description" 
+          rows="10" 
+          cols="40"
+          onChange={handleOnChange}  
+          placeholder="Description"
+          required
+          >{data.description} 
+          </textarea>{error.description  &&<span className="errorForm">{error.description}</span>}
           <input 
             type="url" 
             name="background_image" 

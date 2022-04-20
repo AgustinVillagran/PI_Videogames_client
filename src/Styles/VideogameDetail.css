@@ -62,11 +62,12 @@
   color: #db0004;
   text-shadow: 0 0 30px #db0004;
   transform: scale(1.01);
-  }
-.containerDescripcionVideogameDetail{
-  height: 13vh;
+}
+.containerDescripcionVideogameDetail {
+  height: fit-content;
+  max-height: 13vh;
   text-align: center;
-  text-overflow: ;
+  overflow: hidden;
 }
 .containerDescripcionVideogameDetail:hover{
   overflow-y: scroll;
@@ -85,6 +86,7 @@ border-radius: 0.2rem;
 @media only screen and (max-width:600px){
   .backgroundContainerVideogameDetail{
     background-position-x: center;
+    background-size: 112rem;
   }
   .ContainerVideogameDetail {
     flex-direction: column;

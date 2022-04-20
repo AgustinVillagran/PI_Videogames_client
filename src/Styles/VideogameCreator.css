@@ -222,8 +222,28 @@ input:hover{
     );;
 } 
 .descriptionForm{
+  resize: none;
   width: 18rem;
-  height: 4rem
+  height: 4rem;
+  font-size: 0.84rem;
+  border-width: 0px;
+  color: rgb(118 118 118);
+  background-color: rgb(59, 59, 59);
+  border-radius: 0.2rem;
+  border-width: 0.01rem;
+  border-color: #780b0b;
+  border-style: solid;
+  transition: all 600ms ease;
+}
+.descriptionForm:hover{
+    border: solid 0.06rem #db0004;
+    box-shadow: 0 0 30px #db0004;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.2) 20%,
+      rgba(0,0,0,0)
+      );;
 }
 .selectsConteiner{
   display: inline-flex;
